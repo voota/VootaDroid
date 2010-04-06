@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+<LinearLayout android:layout_height="wrap_content" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_marginTop="10dip"><RelativeLayout android:layout_width="wrap_content" android:layout_weight="1" android:layout_height="fill_parent"><EditText android:layout_height="wrap_content" android:id="@+id/edit_text_search" android:layout_weight="1" android:lines="1" android:layout_centerInParent="true" android:layout_width="fill_parent" android:hint="@string/hint_search"></EditText></RelativeLayout>
+
+
+<ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/btn_search" android:focusable="true" android:src="@drawable/search"></ImageButton>
+
+</LinearLayout><FrameLayout android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="fill_parent"><ListView android:layout_height="fill_parent" android:layout_width="fill_parent" android:focusable="true" android:id="@+id/list_top6" android:drawSelectorOnTop="false">
+
+
+
+</ListView><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/empty_view_text" android:id="@+id/label_empty_top6"></TextView>
+</FrameLayout>
+<LinearLayout android:layout_height="wrap_content" android:orientation="horizontal" android:layout_width="fill_parent">
+<Button android:layout_height="wrap_content" android:id="@+id/btn_politician_ranking" android:baselineAlignBottom="true" android:layout_width="fill_parent" android:layout_weight="1" android:text="@string/btn_text_politican"></Button>
+<Button android:layout_height="wrap_content" android:id="@+id/btn_party_ranking" android:layout_width="fill_parent" android:layout_weight="1" android:text="@string/btn_text_party"></Button>
+
+
+
+
+</LinearLayout>
+
+</LinearLayout>

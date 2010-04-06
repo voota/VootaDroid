@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:clickable="false" android:focusable="false" android:layout_height="wrap_content">
+    
+    
+<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_marginTop="10dip" android:layout_height="wrap_content" android:layout_marginBottom="10dip" android:id="@+id/layout_15_vootes_img"><LinearLayout android:layout_height="wrap_content" android:layout_gravity="left" android:layout_width="wrap_content"><ImageView android:id="@+id/image_entity" android:layout_height="wrap_content" android:layout_width="wrap_content" android:src="@drawable/party" android:layout_marginLeft="10dip"></ImageView></LinearLayout>
+<LinearLayout android:orientation="vertical" android:layout_height="wrap_content" android:id="@+id/layout_15_votes_root" android:layout_width="fill_parent" android:layout_weight="1"><LinearLayout android:layout_width="wrap_content" android:orientation="horizontal" android:layout_weight="1" android:layout_height="fill_parent">
+<ImageButton android:layout_width="wrap_content" android:src="@drawable/yeah" android:id="@+id/btn_tumb_up" android:focusable="true" android:layout_height="wrap_content"></ImageButton><RelativeLayout android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="10dip"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="votes" android:id="@+id/label_votes_positive" android:layout_centerVertical="true"></TextView></RelativeLayout>
+
+
+
+</LinearLayout><LinearLayout android:layout_width="wrap_content" android:orientation="horizontal" android:layout_weight="1" android:layout_height="fill_parent">
+<ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/buu" android:id="@+id/btn_tumb_down" android:focusable="true" android:adjustViewBounds="false"></ImageButton><RelativeLayout android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="10dip"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/label_votes_negative" android:text="votes" android:layout_centerVertical="true"></TextView></RelativeLayout>
+
+
+</LinearLayout>
+</LinearLayout>
+
+
+</LinearLayout>
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/label_entity_name" android:text="Name of entity" android:textSize="20sp" android:textStyle="bold"></TextView>
+
+
+</LinearLayout>

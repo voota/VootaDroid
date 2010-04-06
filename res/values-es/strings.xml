@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+<string name="app_name">VootaDroid</string>
+<string name="pdlg_msg_starting">Iniciando ...</string>
+<string name="pdlg_title">Por favor, espera ...</string>
+<string name="empty_view_text">Nada que mostrar.</string>
+<string name="pdlg_msg_getting_info">Obteniendo datos ...</string>
+<string name="actname_policies_list">Políticos</string>
+<string name="actname_party_list">Partidos</string>
+<string name="actname_search">Resultados de búsqueda</string>
+<string name="menuitem_sort_positive">Mejor valorados</string>
+<string name="menuitem_sort_negative">Peor valorados</string>
+<string name="adlg_title_message">VootaDroid</string>
+<string name="actname_general_list">lista</string>
+<string name="adlg_title_error">VootaDroid Error</string>
+<string name="actname_entity_view">Vista</string>
+<string name="positive_review">Voto positivo</string>
+<string name="negative_review">Voto negativo</string>
+<string name="empty_review_list">Sin opiniones</string>
+<string name="entityrow_votes">(%d positivos, %d negativos)</string>
+<string name="dlg_label_enter_review">Si quieres, puedes acompañar tu voto con un texto:</string>
+<string name="dlg_hint_enter_review">¿Algo que decir?, este es el mejor momento.</string>
+<string name="pdlg_msg_posting_review">Enviando voto ...</string>
+<string name="dlg_reviewtext_title">Texto de la opinión</string>
+<string name="dlg_ok">Aceptar</string>
+<string name="dlg_cancel">Cancelar</string>
+<string name="toast_success_post_review">Voto envíado.</string>
+<string name="hint_search">[buscar]</string>
+<string name="btn_text_politican">Top políticos</string>
+<string name="btn_text_party">Top partidos</string>
+<string name="errormsg_no_respond">El servidor no responde</string>
+<string name="errormsg_no_authorize">Autorización denegada.</string>
+<string name="errormsg_review_not_posted">Error al enviar el voto</string>
+<string name="errormsg_can_not_post_review">No se puede votar sin ser autorizado.</string>
+</resources>

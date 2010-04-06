@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+	android:layout_width="fill_parent" 
+	android:layout_height="?android:attr/listPreferredItemHeight" 
+	xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:orientation="vertical">
+	
+	<TextView android:layout_width="wrap_content" android:id="@+id/label_pos_or_neg" android:text="Positive or negative votes" android:layout_height="wrap_content" android:textStyle="normal|bold"></TextView>
+	<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Review Text" android:id="@+id/label_review_text"></TextView>
+</LinearLayout>

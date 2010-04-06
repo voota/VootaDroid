@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+<string name="app_name">VootaDroid</string>
+<string name="pdlg_msg_starting">Starting...</string>
+<string name="pdlg_title">Please, wait..</string>
+<string name="empty_view_text">No information to display.</string>
+<string name="pdlg_msg_getting_info">Getting information...</string>
+<string name="actname_policies_list">Policies List</string>
+<string name="actname_party_list">Party List</string>
+<string name="actname_search">Search Results</string>
+<string name="menuitem_sort_positive">By Positive Votes</string>
+<string name="menuitem_sort_negative">By Negative Votes</string>
+<string name="adlg_title_message">Voota Droid</string>
+<string name="actname_general_list">Entity List</string>
+<string name="adlg_title_error">Voota Droid Error</string>
+<string name="actname_entity_view">Entity View</string>
+<string name="positive_review">Positive vote</string>
+<string name="negative_review">Negative vote</string>
+<string name="empty_review_list">No reviews.</string>
+<string name="entityrow_votes">(%d up, %d down)</string>
+<string name="dlg_label_enter_review">Enter text of your review (optional):</string>
+<string name="dlg_hint_enter_review">[Review text]</string>
+<string name="pdlg_msg_posting_review">Posting review...</string>
+<string name="dlg_reviewtext_title">Review Text</string>
+<string name="dlg_ok">Ok</string>
+<string name="dlg_cancel">Cancel</string>
+<string name="toast_success_post_review">Your review was posted successfully.</string>
+<string name="hint_search">[Search]</string>
+<string name="btn_text_politican">Top politicians</string>
+<string name="btn_text_party">Top parties</string>
+<string name="errormsg_no_respond">Server doesn\'t respond!</string>
+<string name="errormsg_no_authorize">Not authorized by server!</string>
+<string name="errormsg_review_not_posted">There is an error while posting a review!</string>
+<string name="errormsg_can_not_post_review">You can\'t post a review because you aren\'t authorized!</string>
+</resources>

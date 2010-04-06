@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+	android:layout_width="fill_parent" 
+	xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:orientation="vertical" 
+	android:id="@+id/layout_root" 
+	android:padding="10dip" android:layout_height="wrap_content">
+	
+	<TextView 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:layout_marginBottom="5dip" 
+		android:text="@string/dlg_label_enter_review"></TextView>
+	<EditText 
+		android:layout_height="wrap_content" 
+		android:id="@+id/entry_review_text" 
+		android:layout_width="fill_parent" 
+		android:lines="2" 
+		android:gravity="top" 
+		android:hint="@string/dlg_hint_enter_review"></EditText>
+		
+
+</LinearLayout>
