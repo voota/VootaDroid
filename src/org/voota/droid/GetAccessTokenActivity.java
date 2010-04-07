@@ -18,7 +18,7 @@ public class GetAccessTokenActivity extends Activity
     {
         super.onCreate(savedInstanceState);
  
-        SharedPreferences settings = getApplication().getSharedPreferences(
+        SharedPreferences settings = getApplicationContext().getSharedPreferences(
                 VootaDroidConstants.PREFERENCES_FILE, MODE_PRIVATE);
         String strDefVal = "defAccessToken";
         String strAccessToken = settings.getString(VootaDroidConstants.PREFKEY_ACCESSTOKEN,

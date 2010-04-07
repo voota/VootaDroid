@@ -269,7 +269,7 @@ public class VootaDroid extends Activity {
     
     private void saveAccessToken()
     {
-        SharedPreferences settings = getApplication().getSharedPreferences(
+        SharedPreferences settings = getApplicationContext().getSharedPreferences(
                 VootaDroidConstants.PREFERENCES_FILE, MODE_PRIVATE);
         Editor editSettings = settings.edit();
         editSettings.putString(VootaDroidConstants.PREFKEY_ACCESSTOKEN, m_strAccessToken);
