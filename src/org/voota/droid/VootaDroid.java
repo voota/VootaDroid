@@ -26,15 +26,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class VootaDroid extends Activity {
-	private static final String ACCESSTOKEN_PARAM = "oauth_token";
-	public static String m_strAccessToken = "";
-	public static String m_strTokenSecret = "";
-    
-	private static final String CONSUMER_KEY = "5d26c3ba75a227db79a29234e2c5bc1404bab9e9e";
-    private static final String CONSUMER_SECRET = "f0f87c0729e61eb9373be52a10426c9a";
-    private static final String CALLBACK_URL = "voota:///";
-	
-	public static VootaApi m_vootaApi = new VootaApi(CONSUMER_KEY, CONSUMER_SECRET, CALLBACK_URL);
+	public static String m_strAccessToken;
+	public static String m_strTokenSecret;
+	public static VootaApi m_vootaApi;
+
+	private static final String CONSUMER_KEY;
+    private static final String CONSUMER_SECRET;
+    private static final String CALLBACK_URL;
+	private static final String ACCESSTOKEN_PARAM;
 	
 	protected EditText m_etSearch = null;
 	protected ImageButton m_btnSearch = null;
@@ -49,6 +48,19 @@ public class VootaDroid extends Activity {
 	protected ArrayList<EntityInfo> m_listEntitiesInfo = new ArrayList<EntityInfo>();
 	protected EntityInfoAdapter m_adapterView = null; 
 	protected Throwable m_throwThread = null;
+	
+	static 
+	{
+        CONSUMER_KEY = "5d26c3ba75a227db79a29234e2c5bc1404bab9e9e";
+        CONSUMER_SECRET = "f0f87c0729e61eb9373be52a10426c9a";
+        CALLBACK_URL = "voota:///";
+        ACCESSTOKEN_PARAM = "oauth_token";
+        
+        m_strAccessToken = "";
+        m_strTokenSecret = "";
+        
+	    m_vootaApi = new VootaApi(CONSUMER_KEY, CONSUMER_SECRET, CALLBACK_URL);
+	}
 	
     /** Called when the activity is first created. */
     @Override

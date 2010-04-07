@@ -13,7 +13,6 @@ import android.os.Bundle;
 
 public class GetAccessTokenActivity extends Activity
 {
-
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
