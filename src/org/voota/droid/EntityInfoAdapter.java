@@ -55,6 +55,14 @@ public class EntityInfoAdapter extends ArrayAdapter<EntityInfo>
 	                {
 	                    imgEntity.setImageBitmap(m_btmpImage);
 	                }
+	                else
+	                {
+	                    imgEntity.setImageResource(R.drawable.party);
+	                }
+	            }
+	            else
+	            {
+	                imgEntity.setImageResource(R.drawable.party);
 	            }
 
 	            tvName.setText(oneEntity.getName());

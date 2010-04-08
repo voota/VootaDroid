@@ -4,11 +4,6 @@ import org.voota.api.EntityInfo;
 import org.voota.api.VootaApi;
 import org.voota.api.VootaApiException;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -53,11 +48,12 @@ public class VootaDroid extends Activity {
 	protected ArrayList<EntityInfo> m_listEntitiesInfo = new ArrayList<EntityInfo>();
 	protected EntityInfoAdapter m_adapterView = null; 
 	protected Throwable m_throwThread = null;
+	private boolean m_bIsTopFilled = false;
 	
 	static 
 	{
-        CONSUMER_KEY = "5d26c3ba75a227db79a29234e2c5bc1404bab9e9e";
-        CONSUMER_SECRET = "f0f87c0729e61eb9373be52a10426c9a";
+        CONSUMER_KEY = "";
+        CONSUMER_SECRET = "";
         CALLBACK_URL = "voota:///";
         ACCESSTOKEN_PARAM = "oauth_token";
         
@@ -104,16 +100,12 @@ public class VootaDroid extends Activity {
         {
             try
             {
-                //loadVootaApi();
-                
                 String request_token = uri.getQueryParameter(ACCESSTOKEN_PARAM);
                 m_vootaApi.convertToAccessToken(request_token);
                 m_strAccessToken = m_vootaApi.getAccessToken();
                 m_strTokenSecret = m_vootaApi.getTokenSecret();
                 saveAccessToken();
                 i.setData(null);
-                
-                fillInitialInfo();
             }
             catch (VootaApiException e)
             {
@@ -124,58 +116,21 @@ public class VootaDroid extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
-                        fillInitialInfo();
                     }
                 }).show();
             }
         }
     }
     
-    /*public void onResume() {
+    @Override
+    public void onResume() 
+    {
         super.onResume();
-        
-        Intent iThis = getIntent();
-	    Uri uri = iThis.getData();
-        if(uri != null) 
+        if (m_bIsTopFilled == false)
         {
-            try
-            {
-                String request_token = uri.getQueryParameter(ACCESSTOKEN_PARAM);
-                m_vootaApi.convertToAccessToken(request_token);
-                m_strAccessToken = m_vootaApi.getAccessToken();
-                m_strTokenSecret = m_vootaApi.getTokenSecret();
-                saveAccessToken();
-                iThis.setData(null);
-            }
-            catch (VootaApiException e)
-            {
-                new AlertDialog.Builder(VootaDroid.this)
-                .setTitle(R.string.adlg_title_error)
-                .setMessage(e.getMessage())
-                .setNeutralButton(getString(R.string.dlg_ok), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                }).show();
-            }
             fillInitialInfo();
         }
-        else
-        {
-            String strAccessToken = iThis.getStringExtra(VootaDroidConstants.BUNDLEKEY_ACCESSTOKEN);
-            if (strAccessToken != null)
-            {
-                m_strAccessToken = strAccessToken;
-            }
-            
-            String strTokenSecret = iThis.getStringExtra(VootaDroidConstants.BUNDLEKEY_TOKENSECRET);
-            if (strTokenSecret != null)
-            {
-                m_strTokenSecret = strTokenSecret;
-            }
-        }
-    }*/
+    }
     
     @Override
     public void onConfigurationChanged(Configuration newConfig)
@@ -226,14 +181,6 @@ public class VootaDroid extends Activity {
             VootaDroid.this.startActivity(iPoliciesList);
         }
     };
-    
-    /*private View.OnClickListener OnClickExit = new View.OnClickListener() {
-        
-        @Override
-        public void onClick(View v) {
-            VootaDroid.this.finish();
-        }
-    };*/
     
     private AdapterView.OnItemClickListener OnClickEntity = new AdapterView.OnItemClickListener() {
 
@@ -302,6 +249,8 @@ public class VootaDroid extends Activity {
     
     protected void fillInitialInfo()
     {
+        m_bIsTopFilled = true;
+        
         m_progressDialog = ProgressDialog.show(VootaDroid.this, 
                 getString(R.string.pdlg_title), 
                 getString(R.string.pdlg_msg_starting), true);
@@ -328,7 +277,6 @@ public class VootaDroid extends Activity {
                     Intent iAuthorize = new Intent(Intent.ACTION_VIEW);
                     iAuthorize.setData(Uri.parse(strAuth));
 
-                    //persistVootaApi();
                     startActivity(iAuthorize);
                 }
             }
@@ -341,7 +289,6 @@ public class VootaDroid extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
-                        fillInitialInfo();
                     }
                 }).show();
             }
@@ -350,7 +297,6 @@ public class VootaDroid extends Activity {
         {
             m_strAccessToken = strAccessToken;
             m_strTokenSecret = settings.getString(VootaDroidConstants.PREFKEY_TOKENSECRET, "");
-            fillInitialInfo();
         }
     }
     
@@ -363,40 +309,4 @@ public class VootaDroid extends Activity {
         editSettings.putString(VootaDroidConstants.PREFKEY_TOKENSECRET, m_strTokenSecret);
         editSettings.commit();
     }
-    
-    /*protected void persistVootaApi()
-    {
-        try
-        {
-            FileOutputStream fout = this.openFileOutput("provider.dat", MODE_PRIVATE);
-            ObjectOutputStream oos = new ObjectOutputStream(fout);
-            oos.writeObject(VootaDroid.m_vootaApi);
-            oos.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
-    
-    protected void loadVootaApi()
-    {
-        try
-        {
-            FileInputStream fin = this.openFileInput("provider.dat");
-            ObjectInputStream ois = new ObjectInputStream(fin);
-            VootaDroid.m_vootaApi = (VootaApi) ois.readObject();
-            ois.close();
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-        }
-        catch(ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-    }*/
-
-
 }
