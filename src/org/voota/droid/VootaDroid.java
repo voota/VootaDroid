@@ -4,6 +4,11 @@ import org.voota.api.EntityInfo;
 import org.voota.api.VootaApi;
 import org.voota.api.VootaApiException;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -86,10 +91,47 @@ public class VootaDroid extends Activity {
     	m_lvVotedEntities.setAdapter(m_adapterView);
     	m_lvVotedEntities.setEmptyView(m_tvEmptyView);
     	
-    	fillInitialInfo();
+    	getAccessToken();
     }
     
-    public void onResume() {
+    @Override
+    public void onNewIntent(Intent i)
+    {
+        super.onNewIntent(i);
+        
+        Uri uri = i.getData();
+        if(uri != null) 
+        {
+            try
+            {
+                //loadVootaApi();
+                
+                String request_token = uri.getQueryParameter(ACCESSTOKEN_PARAM);
+                m_vootaApi.convertToAccessToken(request_token);
+                m_strAccessToken = m_vootaApi.getAccessToken();
+                m_strTokenSecret = m_vootaApi.getTokenSecret();
+                saveAccessToken();
+                i.setData(null);
+                
+                fillInitialInfo();
+            }
+            catch (VootaApiException e)
+            {
+                new AlertDialog.Builder(VootaDroid.this)
+                .setTitle(R.string.adlg_title_error)
+                .setMessage(e.getMessage())
+                .setNeutralButton(getString(R.string.dlg_ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        fillInitialInfo();
+                    }
+                }).show();
+            }
+        }
+    }
+    
+    /*public void onResume() {
         super.onResume();
         
         Intent iThis = getIntent();
@@ -117,6 +159,7 @@ public class VootaDroid extends Activity {
                     }
                 }).show();
             }
+            fillInitialInfo();
         }
         else
         {
@@ -132,7 +175,7 @@ public class VootaDroid extends Activity {
                 m_strTokenSecret = strTokenSecret;
             }
         }
-    } 
+    }*/
     
     @Override
     public void onConfigurationChanged(Configuration newConfig)
@@ -267,9 +310,53 @@ public class VootaDroid extends Activity {
         startingThread.start();
     }
     
+    private void getAccessToken()
+    {
+        SharedPreferences settings = getSharedPreferences(
+                VootaDroidConstants.PREFERENCES_FILE, MODE_PRIVATE);
+        String strDefVal = "defAccessToken";
+        String strAccessToken = settings.getString(VootaDroidConstants.PREFKEY_ACCESSTOKEN,
+                strDefVal);
+
+        if (strAccessToken.equals(strDefVal))
+        {
+            try
+            {
+                String strAuth = VootaDroid.m_vootaApi.getAuthorizeUrl();
+                if (strAuth != null)
+                {
+                    Intent iAuthorize = new Intent(Intent.ACTION_VIEW);
+                    iAuthorize.setData(Uri.parse(strAuth));
+
+                    //persistVootaApi();
+                    startActivity(iAuthorize);
+                }
+            }
+            catch (VootaApiException e)
+            {
+                new AlertDialog.Builder(VootaDroid.this)
+                .setTitle(R.string.adlg_title_error)
+                .setMessage(e.getMessage())
+                .setNeutralButton(getString(R.string.dlg_ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        fillInitialInfo();
+                    }
+                }).show();
+            }
+        }
+        else
+        {
+            m_strAccessToken = strAccessToken;
+            m_strTokenSecret = settings.getString(VootaDroidConstants.PREFKEY_TOKENSECRET, "");
+            fillInitialInfo();
+        }
+    }
+    
     private void saveAccessToken()
     {
-        SharedPreferences settings = getApplicationContext().getSharedPreferences(
+        SharedPreferences settings = getSharedPreferences(
                 VootaDroidConstants.PREFERENCES_FILE, MODE_PRIVATE);
         Editor editSettings = settings.edit();
         editSettings.putString(VootaDroidConstants.PREFKEY_ACCESSTOKEN, m_strAccessToken);
@@ -277,4 +364,39 @@ public class VootaDroid extends Activity {
         editSettings.commit();
     }
     
+    /*protected void persistVootaApi()
+    {
+        try
+        {
+            FileOutputStream fout = this.openFileOutput("provider.dat", MODE_PRIVATE);
+            ObjectOutputStream oos = new ObjectOutputStream(fout);
+            oos.writeObject(VootaDroid.m_vootaApi);
+            oos.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    protected void loadVootaApi()
+    {
+        try
+        {
+            FileInputStream fin = this.openFileInput("provider.dat");
+            ObjectInputStream ois = new ObjectInputStream(fin);
+            VootaDroid.m_vootaApi = (VootaApi) ois.readObject();
+            ois.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch(ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+    }*/
+
+
 }

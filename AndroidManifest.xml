@@ -5,12 +5,17 @@
     <application android:icon="@drawable/icon" android:label="@string/app_name">
         <activity android:name=".VootaDroid"
                   android:label="@string/app_name"
-        		  android:configChanges="orientation|keyboardHidden" >
+        		  android:configChanges="orientation|keyboardHidden"
+        		  android:launchMode="singleInstance">
 			<intent-filter>
-				<action android:name="android.intent.action.VIEW"></action>
-				<category android:name="android.intent.category.DEFAULT"></category>
+				<action android:name="android.intent.action.MAIN"></action>
+				<category android:name="android.intent.category.LAUNCHER"></category>
+			</intent-filter>
+			<intent-filter>
+        		<action android:name="android.intent.action.VIEW"></action>	
+        		<category android:name="android.intent.category.DEFAULT"></category>
 				<category android:name="android.intent.category.BROWSABLE"></category>
-				<data android:scheme="voota" />
+				<data android:scheme="voota"/>
 			</intent-filter>
         </activity>
         
@@ -45,8 +50,8 @@
         		  android:label="@string/app_name"
         		  android:configChanges="orientation|keyboardHidden">
         	<intent-filter>
-        		<action android:name="android.intent.action.MAIN"></action>	
-        		<category android:name="android.intent.category.LAUNCHER"></category>
+        		<action android:name="android.intent.action.DEFAULT"></action>	
+        		<category android:name="android.intent.category.VIEW"></category>
         	</intent-filter>
         </activity>
 
