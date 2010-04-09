@@ -60,7 +60,8 @@ public class VootaDroid extends Activity {
         m_strAccessToken = "";
         m_strTokenSecret = "";
         
-	    m_vootaApi = new VootaApi(CONSUMER_KEY, CONSUMER_SECRET, CALLBACK_URL);
+	    m_vootaApi = new VootaApi(CONSUMER_KEY, CONSUMER_SECRET, CALLBACK_URL,
+	            VootaDroidConstants.ISPRODUCTION_BUILD);
 	}
 	
     /** Called when the activity is first created. */
@@ -199,7 +200,7 @@ public class VootaDroid extends Activity {
         public void run() {
             try
             {
-                m_listEntitiesInfo = m_vootaApi.getTopSix();
+                m_listEntitiesInfo = m_vootaApi.getTop();
             }
             catch (VootaApiException e)
             {

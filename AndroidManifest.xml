@@ -45,16 +45,6 @@
         		<category android:name="android.intent.category.VIEW"></category>
         	</intent-filter>
         </activity>
-
-        <activity android:name=".GetAccessTokenActivity"
-        		  android:label="@string/app_name"
-        		  android:configChanges="orientation|keyboardHidden">
-        	<intent-filter>
-        		<action android:name="android.intent.action.DEFAULT"></action>	
-        		<category android:name="android.intent.category.VIEW"></category>
-        	</intent-filter>
-        </activity>
-
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
