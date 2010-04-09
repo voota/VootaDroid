@@ -23,7 +23,7 @@ public class VootaDroidConstants
         PREFKEY_ACCESSTOKEN = "AccessToken";
         PREFKEY_TOKENSECRET = "TokenSecret";
         
-        ISPRODUCTION_BUILD = false;
+        ISPRODUCTION_BUILD = true;
         HOSTNAME_TEST = "http://api.voota.org"; /*"http://dummy.voota.es";*/
     }
 }
