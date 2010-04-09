@@ -60,8 +60,15 @@ public class VootaDroid extends Activity {
         m_strAccessToken = "";
         m_strTokenSecret = "";
         
-	    m_vootaApi = new VootaApi(CONSUMER_KEY, CONSUMER_SECRET, CALLBACK_URL,
-	            VootaDroidConstants.ISPRODUCTION_BUILD);
+        if (VootaDroidConstants.ISPRODUCTION_BUILD)
+        {
+            m_vootaApi = new VootaApi(CONSUMER_KEY, CONSUMER_SECRET, CALLBACK_URL);
+        }
+        else
+        {
+            m_vootaApi = new VootaApi(CONSUMER_KEY, CONSUMER_SECRET, CALLBACK_URL,
+                    VootaDroidConstants.HOSTNAME_TEST);
+        }
 	}
 	
     /** Called when the activity is first created. */

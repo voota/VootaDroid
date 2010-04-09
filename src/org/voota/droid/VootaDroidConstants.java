@@ -11,6 +11,7 @@ public class VootaDroidConstants
     static final String PREFKEY_TOKENSECRET;
     
     static final boolean ISPRODUCTION_BUILD;
+    static final String HOSTNAME_TEST;
     
     static 
     {
@@ -22,6 +23,7 @@ public class VootaDroidConstants
         PREFKEY_ACCESSTOKEN = "AccessToken";
         PREFKEY_TOKENSECRET = "TokenSecret";
         
-        ISPRODUCTION_BUILD = true;
+        ISPRODUCTION_BUILD = false;
+        HOSTNAME_TEST = "http://api.voota.org"; /*"http://dummy.voota.es";*/
     }
 }
