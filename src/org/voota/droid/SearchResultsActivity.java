@@ -58,6 +58,7 @@ public class SearchResultsActivity extends VootaDroid
     
     protected void fillInitialInfo()
     {
+        m_bIsEntityFilled = true;
         m_progressDialog = ProgressDialog.show(SearchResultsActivity.this, 
                 getText(R.string.pdlg_title), getText(R.string.pdlg_msg_getting_info), true);
         

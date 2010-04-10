@@ -53,10 +53,9 @@ public class EntityViewActivity extends ListActivity
     private ArrayList<ReviewInfo> m_listReviews = new ArrayList<ReviewInfo>();
     private ReviewAdapter m_adapter = null;
     private Handler m_handler = new Handler();
-    private Throwable m_throwThread = null;
+    private VootaApiException m_throwThread = null;
     private ProgressDialog m_pDlg = null;
     private ReviewInfo m_reviewInfo = null;
-    //private boolean m_bIsEntityChange = false;
     
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -76,24 +75,6 @@ public class EntityViewActivity extends ListActivity
         fillInitialInfo();
     }
     
- /*   @Override
-    public void onStop()
-    {
-        super.onStop();
-        if (m_bIsEntityChange)
-        {
-            Intent iData = new Intent();
-            iData.putExtra(getString(R.string.bundle_key_entity_info), m_entityInfo);
-            // RESULT_OK if entity data is change 
-            this.setResult(Activity.RESULT_OK, iData);
-        }
-        else
-        {
-            // RESULT_CANCEL if entity data is not change
-            this.setResult(Activity.RESULT_CANCELED);
-        }
-    }*/
-
     @Override
     public void onConfigurationChanged(Configuration newConfig)
     {
@@ -260,7 +241,6 @@ public class EntityViewActivity extends ListActivity
                 {
                     Toast.makeText(EntityViewActivity.this, 
                         R.string.toast_success_post_review, Toast.LENGTH_LONG).show();
-                    //m_bIsEntityChange = true;
                 }
             }
             else
@@ -269,7 +249,8 @@ public class EntityViewActivity extends ListActivity
                 
                 new AlertDialog.Builder(EntityViewActivity.this)
                 .setTitle(R.string.adlg_title_error)
-                .setMessage(m_throwThread.getMessage())
+                .setMessage(VootaDroidConstants.getErrorMessage(
+                    m_throwThread.getErrorCode(), EntityViewActivity.this))
                 .setNeutralButton(getString(R.string.dlg_ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

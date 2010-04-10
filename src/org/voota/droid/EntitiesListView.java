@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +25,6 @@ public class EntitiesListView extends ListActivity
 {
     private final int MENU_SORT_POSITIVE = 1;
     private final int MENU_SORT_NEGATIVE = 2;
-    //private final int ENTITY_VIEW_ACTIVITY = 100;
     private final int m_nPageLimit = 100;
     private ArrayList<EntityInfo> m_listEntitiesInfo = new ArrayList<EntityInfo>();
     private EntityInfoAdapter m_adapter;
@@ -35,15 +33,13 @@ public class EntitiesListView extends ListActivity
     private String m_strActivityTitle = "";
     private int m_nCurrentPage = 1;
     private int m_nLastTotalItems = -1;
-    //private int m_nLastClickPosition = -1;
     
     private TextView m_tvEmpty = null;
     private ListView m_lvEntities = null;
     
     private ProgressDialog m_progressDialog = null;
     private Handler m_handler = new Handler();
-    private Throwable m_throwThread = null;
-    //private 
+    private VootaApiException m_throwThread = null;
     
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -76,22 +72,6 @@ public class EntitiesListView extends ListActivity
         
         fillInitialInfo();
     }
-    
- /*   @Override
-    public void onActivityResult(int reqCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(reqCode, resultCode, data);
-        if (reqCode == ENTITY_VIEW_ACTIVITY && resultCode == Activity.RESULT_OK)
-        {
-            if (data != null && m_nLastClickPosition != -1)
-            {
-                EntityInfo savedEntity = (EntityInfo)data.getSerializableExtra(
-                        getString(R.string.bundle_key_entity_info));
-                m_listEntitiesInfo.get(m_nLastClickPosition).setPositiveVotes(savedEntity.getPositiveVotes());
-                m_listEntitiesInfo.get(m_nLastClickPosition).setNegativeVotes(savedEntity.getNegativeVotes());
-            }
-        }
-    }*/
     
     @Override
     public void onConfigurationChanged(Configuration newConfig)
@@ -151,12 +131,10 @@ public class EntitiesListView extends ListActivity
 
         @Override
         public void onItemClick(AdapterView<?> arg0, View arg1, int position,  long id) {
-            //m_nLastClickPosition = position;
             
             Intent iEntityInfo = new Intent(EntitiesListView.this, EntityViewActivity.class);
             iEntityInfo.putExtra(VootaDroidConstants.BUNDLEKEY_ENTITYINFO, 
                     m_listEntitiesInfo.get(position));
-            //startActivityForResult(iEntityInfo, ENTITY_VIEW_ACTIVITY);
             startActivity(iEntityInfo);
         }
     };
@@ -192,8 +170,6 @@ public class EntitiesListView extends ListActivity
                 if (m_nLastTotalItems != total) 
                 {
                     m_nLastTotalItems = total;
-                    Log.i(this.toString(), "scroll" + String.valueOf(visible) + 
-                            " " + String.valueOf(total) + " " + String.valueOf(first));
                     fillWithNextPage(total);
                 }
             }
@@ -240,8 +216,6 @@ public class EntitiesListView extends ListActivity
                     m_listEntitiesInfo.clear();
                     fullRes.addAll(pageRes);
                     m_listEntitiesInfo = fullRes;
-                    Log.i(this.toString(), String.valueOf(pageRes.size()));
-                    Log.i(this.toString(), pageRes.get(0).getLongName());
                 }
             }
             catch (VootaApiException e)
@@ -277,7 +251,8 @@ public class EntitiesListView extends ListActivity
                 
                 new AlertDialog.Builder(EntitiesListView.this)
                 .setTitle(R.string.adlg_title_error)
-                .setMessage(m_throwThread.getMessage())
+                .setMessage(VootaDroidConstants.getErrorMessage(
+                    m_throwThread.getErrorCode(), EntitiesListView.this))
                 .setNeutralButton(getString(R.string.dlg_ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -288,12 +263,10 @@ public class EntitiesListView extends ListActivity
             }
             else
             {
-                Log.i(this.toString(), "1");
                 if (m_bIsNeedToClean)
                 {
                     m_adapter.clear();
                 }
-                Log.i(this.toString(), "2");
                 if (m_nPageSize != 0)
                 {
                     int size = m_listEntitiesInfo.size();
@@ -317,13 +290,9 @@ public class EntitiesListView extends ListActivity
                         m_adapter.add(m_listEntitiesInfo.get(i));
                     }
                     
-                    Log.i(this.toString(), String.valueOf(m_listEntitiesInfo.size()) + 
-                            String.valueOf(m_adapter.getCount()));
-                    
                     m_adapter.notifyDataSetChanged();
                     m_lvEntities.setSelection(size - m_nPageSize);
                 }
-                Log.i(this.toString(), "4");
                 m_progressDialog.dismiss();
             }
         }

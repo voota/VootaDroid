@@ -47,8 +47,8 @@ public class VootaDroid extends Activity {
 	
 	protected ArrayList<EntityInfo> m_listEntitiesInfo = new ArrayList<EntityInfo>();
 	protected EntityInfoAdapter m_adapterView = null; 
-	protected Throwable m_throwThread = null;
-	private boolean m_bIsTopFilled = false;
+	protected VootaApiException m_throwThread = null;
+	protected boolean m_bIsEntityFilled = false;
 	
 	static 
 	{
@@ -119,7 +119,7 @@ public class VootaDroid extends Activity {
             {
                 new AlertDialog.Builder(VootaDroid.this)
                 .setTitle(R.string.adlg_title_error)
-                .setMessage(e.getMessage())
+                .setMessage(VootaDroidConstants.getErrorMessage(e.getErrorCode(), this))
                 .setNeutralButton(getString(R.string.dlg_ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -134,7 +134,7 @@ public class VootaDroid extends Activity {
     public void onResume() 
     {
         super.onResume();
-        if (m_bIsTopFilled == false)
+        if (m_bIsEntityFilled == false)
         {
             fillInitialInfo();
         }
@@ -231,7 +231,8 @@ public class VootaDroid extends Activity {
 
                 new AlertDialog.Builder(VootaDroid.this)
                 .setTitle(R.string.adlg_title_error)
-                .setMessage(m_throwThread.getMessage())
+                .setMessage(VootaDroidConstants.getErrorMessage(
+                    m_throwThread.getErrorCode(), VootaDroid.this))
                 .setNeutralButton(getString(R.string.dlg_ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -257,7 +258,7 @@ public class VootaDroid extends Activity {
     
     protected void fillInitialInfo()
     {
-        m_bIsTopFilled = true;
+        m_bIsEntityFilled = true;
         
         m_progressDialog = ProgressDialog.show(VootaDroid.this, 
                 getString(R.string.pdlg_title), 
@@ -292,7 +293,7 @@ public class VootaDroid extends Activity {
             {
                 new AlertDialog.Builder(VootaDroid.this)
                 .setTitle(R.string.adlg_title_error)
-                .setMessage(e.getMessage())
+                .setMessage(VootaDroidConstants.getErrorMessage(e.getErrorCode(), this))
                 .setNeutralButton(getString(R.string.dlg_ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

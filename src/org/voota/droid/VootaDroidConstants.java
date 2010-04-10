@@ -1,5 +1,9 @@
 package org.voota.droid;
 
+import org.voota.api.VootaApiException;
+
+import android.content.Context;
+
 public class VootaDroidConstants
 {
     static final String BUNDLEKEY_ENTITYINFO;
@@ -25,5 +29,28 @@ public class VootaDroidConstants
         
         ISPRODUCTION_BUILD = true;
         HOSTNAME_TEST = "http://api.voota.org"; /*"http://dummy.voota.es";*/
+    }
+    
+    static String getErrorMessage(int nErrorCode, Context context)
+    {
+        int nResID = R.string.errormsg_no_respond;
+        
+        switch(nErrorCode)
+        {
+        case VootaApiException.kErrorNoRespond:
+            nResID = R.string.errormsg_no_respond;
+            break;
+        case VootaApiException.kErrorNoAuthorize:
+            nResID = R.string.errormsg_no_authorize;
+            break;
+        case VootaApiException.kErrorReviewNotPosted:
+            nResID = R.string.errormsg_review_not_posted;
+            break;
+        case VootaApiException.kErrorYouCantPostReview:
+            nResID = R.string.errormsg_can_not_post_review;
+            break;
+        }
+
+        return context.getString(nResID);
     }
 }
