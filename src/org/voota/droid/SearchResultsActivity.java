@@ -18,9 +18,9 @@ public class SearchResultsActivity extends VootaDroid
         m_btnSearch.setOnClickListener(onClickSearch);
         m_btnPoliticRank.setVisibility(View.GONE);
         m_btnPartyRank.setVisibility(View.GONE);
-        //m_btnExit.setVisibility(View.GONE);
+        m_tvTopThisWeek.setVisibility(View.GONE);
         
-        m_strSearchString =  getIntent().getExtras().getString(VootaDroidConstants.BUNDLEKEY_SEARCHSTRING);
+        m_strSearchString = getIntent().getExtras().getString(VootaDroidConstants.BUNDLEKEY_SEARCHSTRING);
         m_etSearch.setText(m_strSearchString);
     }
     

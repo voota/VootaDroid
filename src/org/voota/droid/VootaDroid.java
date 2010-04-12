@@ -40,6 +40,7 @@ public class VootaDroid extends Activity {
 	protected ListView m_lvVotedEntities = null;
 	protected Button m_btnPoliticRank = null;
 	protected Button m_btnPartyRank = null;
+	protected TextView m_tvTopThisWeek = null;
 	private TextView m_tvEmptyView = null;
 	
 	protected ProgressDialog m_progressDialog = null;
@@ -83,6 +84,7 @@ public class VootaDroid extends Activity {
     	m_btnPoliticRank = ((Button)this.findViewById(R.id.btn_politician_ranking));
     	m_btnPartyRank = ((Button)this.findViewById(R.id.btn_party_ranking));
     	m_tvEmptyView = ((TextView)this.findViewById(R.id.label_empty_top6));
+    	m_tvTopThisWeek = ((TextView)this.findViewById(R.id.label_voted_this_week));
     	
     	m_btnSearch.setOnClickListener(OnClickSearch);
     	m_lvVotedEntities.setOnItemClickListener(OnClickEntity);

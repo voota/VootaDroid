@@ -10,7 +10,8 @@
 
 <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/btn_search" android:focusable="true" android:src="@drawable/search"></ImageButton>
 
-</LinearLayout><FrameLayout android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="fill_parent"><ListView android:layout_height="fill_parent" android:layout_width="fill_parent" android:focusable="true" android:id="@+id/list_top6" android:drawSelectorOnTop="false">
+
+</LinearLayout><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="5dip" android:text="@string/label_top_this_week" android:textSize="15sp" android:id="@+id/label_voted_this_week"></TextView><FrameLayout android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="fill_parent"><ListView android:layout_height="fill_parent" android:layout_width="fill_parent" android:focusable="true" android:id="@+id/list_top6" android:drawSelectorOnTop="false">
 
 
 

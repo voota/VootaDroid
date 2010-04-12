@@ -33,4 +33,5 @@
 <string name="errormsg_no_authorize">Autorización denegada.</string>
 <string name="errormsg_review_not_posted">Error al enviar el voto</string>
 <string name="errormsg_can_not_post_review">No se puede votar sin ser autorizado.</string>
+<string name="label_top_this_week">Most voted this week</string>
 </resources>

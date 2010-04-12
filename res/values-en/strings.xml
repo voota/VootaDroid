@@ -33,4 +33,5 @@
 <string name="errormsg_no_authorize">Not authorized by server!</string>
 <string name="errormsg_review_not_posted">There is an error while posting a review!</string>
 <string name="errormsg_can_not_post_review">You can\'t post a review because you aren\'t authorized!</string>
+<string name="label_top_this_week">Most voted this week</string>
 </resources>
