@@ -18,8 +18,10 @@ import android.widget.TextView;
 public class EntityInfoAdapter extends ArrayAdapter<EntityInfo> 
 {
     private ArrayList<EntityInfo> m_entityItems;
-    private static String m_strLabelVotes = null;
+    protected EntityInfo m_oneEntity = null;
+    protected static String m_strLabelVotes = null;
     private byte[] m_byImage;
+    
     private Bitmap m_btmpImage = null;
 
     public EntityInfoAdapter(Context context, int textViewResourceId, 
@@ -40,14 +42,14 @@ public class EntityInfoAdapter extends ArrayAdapter<EntityInfo>
                 v = vi.inflate(R.layout.entity_row, null);
             }
              
-            EntityInfo oneEntity = m_entityItems.get(position);
-            if (oneEntity != null)
+            m_oneEntity = m_entityItems.get(position);
+            if (m_oneEntity != null)
             {
             	ImageView imgEntity = (ImageView) v.findViewById(R.id.image_row_entity);
 	            TextView tvName = (TextView) v.findViewById(R.id.label_rowentity_name);
 	            TextView tvVotes = (TextView) v.findViewById(R.id.label_rowentity_votes);
 	                
-	            m_byImage = oneEntity.getBytesImageS();
+	            m_byImage = m_oneEntity.getBytesImageS();
 	            if (m_byImage != null)
 	            {
 	                m_btmpImage = BitmapFactory.decodeByteArray(m_byImage, 0, m_byImage.length);
@@ -65,9 +67,9 @@ public class EntityInfoAdapter extends ArrayAdapter<EntityInfo>
 	                imgEntity.setImageResource(R.drawable.party);
 	            }
 
-	            tvName.setText(oneEntity.getName());
-	            tvVotes.setText(String.format(m_strLabelVotes, oneEntity.getPositiveVotes(),
-	            		oneEntity.getNegativeVotes()));
+	            tvName.setText(m_oneEntity.getName());
+	            tvVotes.setText(String.format(m_strLabelVotes, m_oneEntity.getPositiveVotes(),
+	            		m_oneEntity.getNegativeVotes()));
             }
             return v;
     }

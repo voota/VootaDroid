@@ -56,13 +56,24 @@ public class SearchResultsActivity extends VootaDroid
         }
     };
     
+    @Override
     protected void fillInitialInfo()
     {
         m_bIsEntityFilled = true;
+
+        m_adapterView = new EntityInfoAdapter(SearchResultsActivity.this, 
+                R.layout.entity_row, m_listEntitiesInfo);
+        m_lvVotedEntities.setAdapter(m_adapterView);
+
         m_progressDialog = ProgressDialog.show(SearchResultsActivity.this, 
                 getText(R.string.pdlg_title), getText(R.string.pdlg_msg_getting_info), true);
         
         Thread threadGetSearch = new Thread(getSearchResults);
         threadGetSearch.start();
+    }
+    
+    @Override
+    protected void getAccessToken()
+    {
     }
 }

@@ -92,7 +92,7 @@ public class VootaDroid extends Activity {
     	m_btnPartyRank.setOnClickListener(OnClickPartyRank);
     	m_btnSearch.requestFocus();
     	
-    	m_adapterView = new EntityInfoAdapter(VootaDroid.this, 
+    	m_adapterView = new EntityTopAdapter(VootaDroid.this, 
     	        R.layout.entity_row, m_listEntitiesInfo);
     	m_lvVotedEntities.setAdapter(m_adapterView);
     	m_lvVotedEntities.setEmptyView(m_tvEmptyView);
@@ -270,7 +270,7 @@ public class VootaDroid extends Activity {
         startingThread.start();
     }
     
-    private void getAccessToken()
+    protected void getAccessToken()
     {
         SharedPreferences settings = getSharedPreferences(
                 VootaDroidConstants.PREFERENCES_FILE, MODE_PRIVATE);
