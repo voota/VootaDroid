@@ -249,8 +249,9 @@ public class EntityViewActivity extends ListActivity
                 
                 new AlertDialog.Builder(EntityViewActivity.this)
                 .setTitle(R.string.adlg_title_error)
-                .setMessage(VootaDroidConstants.getErrorMessage(
-                    m_throwThread.getErrorCode(), EntityViewActivity.this))
+                .setMessage(/*VootaDroidConstants.getErrorMessage(
+                    m_throwThread.getErrorCode(), EntityViewActivity.this)*/
+                        m_throwThread.getMessage())
                 .setNeutralButton(getString(R.string.dlg_ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
