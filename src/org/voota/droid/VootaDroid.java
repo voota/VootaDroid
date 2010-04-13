@@ -1,3 +1,25 @@
+/*
+ * This file is part of the Voota package.
+ * (c) 2010 Tatyana Ulyanova <levkatata.voota@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/**
+ * This file contains implementation of VootaDroid class. This class represents
+ * main activity of application and contains general data for all other activities.
+ * Main activity displays search box, top entities list, top politician and top
+ * parties buttons.
+ * This class contains OAuth authorization calls, saving and restoring authorization
+ * data. 
+ *
+ * @package    Voota
+ * @subpackage Droid
+ * @author     Tatyana Ulyanova
+ * @version    1.0
+ */
+
 package org.voota.droid;
 
 import org.voota.api.EntityInfo;

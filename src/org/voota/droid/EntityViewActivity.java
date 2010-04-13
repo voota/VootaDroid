@@ -1,3 +1,23 @@
+/*
+ * This file is part of the Voota package.
+ * (c) 2010 Tatyana Ulyanova <levkatata.voota@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/**
+ * This file contains implementation of EntityViewActivity class. This activity is
+ * used to display full information about politician or party: full image, full
+ * name, list of last reviews. This activity also shows two buttons used to post 
+ * positive or negative review.
+ *
+ * @package    Voota
+ * @subpackage Droid
+ * @author     Tatyana Ulyanova
+ * @version    1.0
+ */
+
 package org.voota.droid;
 
 import java.lang.reflect.Field;
@@ -249,9 +269,8 @@ public class EntityViewActivity extends ListActivity
                 
                 new AlertDialog.Builder(EntityViewActivity.this)
                 .setTitle(R.string.adlg_title_error)
-                .setMessage(/*VootaDroidConstants.getErrorMessage(
-                    m_throwThread.getErrorCode(), EntityViewActivity.this)*/
-                        m_throwThread.getMessage())
+                .setMessage(VootaDroidConstants.getErrorMessage(
+                    m_throwThread.getErrorCode(), EntityViewActivity.this))
                 .setNeutralButton(getString(R.string.dlg_ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

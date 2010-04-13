@@ -1,3 +1,24 @@
+/*
+ * This file is part of the Voota package.
+ * (c) 2010 Tatyana Ulyanova <levkatata.voota@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/**
+ * This file contains implementation of SearchResultsActivity class. This Activity is
+ * used to search politicians or parties by key word, show search results to user, 
+ * change key word. 
+ * This class inherits from VootaDroid, but excludes OAuth calls, top buttons and
+ * redefines some methods.
+ *
+ * @package    Voota
+ * @subpackage Droid
+ * @author     Tatyana Ulyanova
+ * @version    1.0
+ */
+
 package org.voota.droid;
 
 import org.voota.api.VootaApiException;

@@ -1,3 +1,24 @@
+/*
+ * This file is part of the Voota package.
+ * (c) 2010 Tatyana Ulyanova <levkatata.voota@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/**
+ * This file contains implementation of EntitiesListView class. This Activity is
+ * used to display list of politicians or list of parties, change order of their
+ * displaying. Activity shows information per page, size of page is defined by 
+ * Voota Api and now it's 20 entities. New portion of information is added when 
+ * user gets last entity.
+ *
+ * @package    Voota
+ * @subpackage Droid
+ * @author     Tatyana Ulyanova
+ * @version    1.0
+ */
+
 package org.voota.droid;
 
 import java.util.ArrayList;

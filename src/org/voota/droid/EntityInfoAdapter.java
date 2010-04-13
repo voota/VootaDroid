@@ -1,3 +1,24 @@
+/*
+ * This file is part of the Voota package.
+ * (c) 2010 Tatyana Ulyanova <levkatata.voota@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/**
+ * This file contains implementation of EntityInfoAdapter class. This is a custom
+ * list adapter used for displaying custom view of list row. Every row shows
+ * information about politician or party: small image, name, positive votes
+ * and negative votes. This adapter is used for all entities list in
+ * SearchResultsActivity and EntitiesListView activities.
+ *
+ * @package    Voota
+ * @subpackage Droid
+ * @author     Tatyana Ulyanova
+ * @version    1.0
+ */
+
 package org.voota.droid;
 
 import java.util.ArrayList;
